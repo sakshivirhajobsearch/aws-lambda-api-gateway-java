@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Java Lambda with API Gateway
+
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: HelloLambdaJava
+      Handler: com.example.lambda.HelloLambda
+      Runtime: java17
+      CodeUri: .
+      MemorySize: 512
+      Timeout: 10
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
